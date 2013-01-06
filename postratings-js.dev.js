@@ -113,7 +113,12 @@ function rate_post() {
 				if(ratingsL10n.show_loading) {
 					jQuery('#post-ratings-' + post_id + '-loading').show();
 				}
-				jQuery.ajax({type: 'GET', url: ratingsL10n.ajax_url, data: 'action=postratings&pid=' + post_id + '&rate=' + post_rating + '&postratings_' + post_id + '_nonce=' + post_ratings_nonce, cache: false, success: rate_post_success});
+				jQuery.ajax({
+					type: 'GET', 
+					url: ratingsL10n.ajax_url, 
+					data: 'action=postratings&pid=' + post_id + '&rate=' + post_rating + '&postratings_' + post_id + '_nonce=' + post_ratings_nonce, 
+					cache: 
+					false, success: rate_post_success});
 			});
 		} else {
 			if(ratingsL10n.show_loading) {
@@ -125,3 +130,27 @@ function rate_post() {
 		alert(ratingsL10n.text_wait);
 	}
 }
+
+jQuery(document).ready(function($) {
+	$('.post-ratings').each(function() {
+		var $elm = $(this),
+			post_ratings_nonce = $elm.data('nonce'),
+			post_id = $elm.attr('id').split('-')[2];
+		if(typeof post_ratings_nonce == 'undefined' || post_ratings_nonce == null)
+			post_ratings_nonce = $elm.attr('data-nonce');
+
+		$.ajax({
+			type: 'GET', 
+			url: ratingsL10n.ajax_url, 
+			data: 'action=getpostratings&pid=' + post_id, 
+			success: function(data) {
+				$elm.html(data);
+			}
+		});
+
+	});
+});
+
+
+
+
