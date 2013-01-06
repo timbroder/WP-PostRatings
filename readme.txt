@@ -4,7 +4,7 @@ WP-PostRatings
 fork of http://wordpress.org/extend/plugins/wp-postratings/ for Varnish features
 Requires WP-Varinsh https://github.com/pkhamre/wp-varnish
 
-Contributors: GamerZ
+Contributors: GamerZ, broderboy
 Donate link: http://lesterchan.net/site/donation/
 Tags: ratings, rating, postratings, postrating, vote, digg, ajax, post
 Requires at least: 2.8
